@@ -1,0 +1,41 @@
+CREATE DATABASE UC13;
+USE UC13;
+
+CREATE TABLE Usuarios
+(
+	Usuario_ID INT PRIMARY KEY IDENTITY,
+	Usuario VARCHAR (150) UNIQUE NOT NULL,
+	Senha VARCHAR (150) NOT NULL
+);
+
+
+CREATE TABLE Classes
+(
+	Classe_ID INT PRIMARY KEY IDENTITY,
+	NomeClasse VARCHAR (250) UNIQUE NOT NULL,
+	DescricaoClasse VARCHAR (500) NOT NULL
+);
+
+CREATE TABLE Habilidades
+(
+	Habilidade_Id INT PRIMARY KEY IDENTITY,
+	Nome VARCHAR (250) UNIQUE NOT NULL
+);
+
+CREATE TABLE Personagens
+(
+
+	Personagem_Id INT PRIMARY KEY IDENTITY,
+	NomePersonagem VARCHAR (30) UNIQUE NOT NULL,
+	Usuario_Id INT UNIQUE FOREIGN KEY REFERENCES Usuarios (usuario_Id), 
+	Classe_Id INT FOREIGN KEY REFERENCES Classes (classe_ID)
+);
+
+CREATE TABLE Classe_Habilidades
+( 
+	classe_ID INT FOREIGN KEY REFERENCES Classes(Classe_ID),
+	Habilidade_ID INT FOREIGN KEY REFERENCES Habilidades (habilidade_Id)
+
+
+
+);
